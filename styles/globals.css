@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .card-container:hover .card-content {
+    transform: translateX(0);
+  }
+  
