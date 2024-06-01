@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoginForm = () => {
   return (
-    <div className="min-h-screen flex items-center justify-start" style={{ backgroundImage: 'url("https://www.sats.com.sg/assets/images/annual_report/globe.svg")', backgroundSize: 'cover', backgroundRepeat:'no-repeat', backgroundPosition: 'center' , width:'360px' , height:'470px' }}>
+    <div className="bg-[url('https://www.sats.com.sg/assets/images/annual_report/globe.svg')] min-h-screen flex items-center justify-center bg-no-repeat bg-right">
       <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg p-10 rounded-xl shadow-lg max-w-md">
         <h2 className="text-4xl font-bold mb-8 text-gray-900 text-center">Login</h2>
         <form>
@@ -25,7 +25,7 @@ const LoginForm = () => {
               className="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
               id="employeId"
               type="text"
-              placeholder="Enter your employeID"
+              placeholder="Enter your employee ID"
             />
           </div>
           <div className="mb-6">
