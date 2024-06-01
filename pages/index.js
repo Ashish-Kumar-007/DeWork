@@ -17,7 +17,7 @@ export default function Home() {
     <Card /> */}
     {/* <Dashboard /> */}
     {/* <AttendancePage /> */}
-    {/* <LoginPage /> */}
+    <LoginPage />
     <DashboardPage />
     
   </div>

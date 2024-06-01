@@ -39,7 +39,7 @@ const LoginPage = () => {
         </div>
         {/* Sign-Up Option */}
         <div className="text-center">
-          <p className="mb-2 text-gray-700">Don't have a decentralized identity?</p>
+          <p className="mb-2 text-gray-700">Don&#39;t have a decentralized identity?</p>
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)" }}
             whileTap={{ scale: 0.95 }}
