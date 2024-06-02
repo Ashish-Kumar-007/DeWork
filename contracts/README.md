@@ -26,7 +26,7 @@ DeWork is a Solidity smart contract designed to manage employee check-ins, check
 
 ## Deployed Addresses
 Incentive Token: https://sepolia.etherscan.io/address/0x2e76fffc2ec9113728e857406170a90a47b72bcb
-DeWork: https://sepolia.etherscan.io/address/0x0471369943b50162ed507a074fac0c2b8a8fed8b
+DeWork: https://sepolia.etherscan.io/address/0x5FdCE7b1Db0175b0463dd7D1aAd8620094c04cb1
 
 ## Installation
 

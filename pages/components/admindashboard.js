@@ -1,24 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
+import { Web3 } from "web3";
+import { deworkContractABI, deworkContract } from "../contract/dework.json";
+import { useAccount } from "wagmi";
 
 const DashboardPage = () => {
-  // State for employee list
-  const [employees, setEmployees] = useState([
-    { id: 1, name: 'John Doe', position: 'Software Engineer' },
-    { id: 2, name: 'Jane Smith', position: 'HR Manager' },
-    { id: 3, name: 'Alice Johnson', position: 'Marketing Coordinator' },
-    // Add more employees as needed
-  ]);
-
-  // State for new employee form
+  const {address}  = useAccount()
+  const [web3, setWeb3] = useState(null);
+  useEffect(() => {
+    if (window && window?.ethereum) {
+      setWeb3(new Web3(window?.ethereum));
+    }
+  }, []);
+  const [employees, setEmployees] = useState([])
   const [newEmployee, setNewEmployee] = useState({ name: '', position: '' });
 
   // Function to handle form submission and add new employee
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newEmployee.name.trim() !== '' && newEmployee.position.trim() !== '') {
-      setEmployees([...employees, { id: employees.length + 1, ...newEmployee }]);
-      setNewEmployee({ name: '', position: '' });
+    try {
+      // let web3;
+      // if (window && window?.ethereum) {
+      //   web3= (new Web3(window?.ethereum));
+      // }
+      const contract = new web3.eth.Contract(
+        deworkContractABI,
+        deworkContract
+      );
+      const formDataJson = JSON.stringify(formData);
+  
+      console.log(formDataJson);
+  
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          pinataOptions: { cidVersion: 0 },
+          pinataContent: formData,
+        }),
+      };
+  
+      const response = await fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', options);
+      const resData = await response.json();
+      console.log(resData, formData["Wallet Address"], resData.IpfsHash);
+      const employeeAddress = formData["Wallet Address"]
+      await contract.methods.addEmployee(employeeAddress, resData.IpfsHash).send({
+        from: address
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchEmployeeLists = async () => {
+    try {
+      const contract = new web3.eth.Contract(
+        deworkContractABI,
+        deworkContract
+      );
+      
+      const addresses = await contract.methods.getAllEmployeeDetails().call({from :address});
+      const employeesArray = []; // Temporary array to hold employee details
+    for (let i = 0; i < addresses.length; i++) {
+        const employee = await contract.methods.getEmployeeDetails(addresses[i]).call();
+        const employeeJson = JSON.stringify(employee);
+        employeesArray.push(employee);
+    }
+    setEmployees(employeesArray); // Set state once with the accumulated data
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -27,10 +80,13 @@ const DashboardPage = () => {
     setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
   };
 
-  // Function to remove an employee from the list
-  const handleRemoveEmployee = (id) => {
-    setEmployees(employees.filter(emp => emp.id !== id));
-  };
+  useEffect(() => {
+    const call = async () => {
+      await fetchEmployeeLists();
+    }
+    call ()
+  })
+
 
   return (
     <div className="container mx-auto mt-8">
@@ -38,33 +94,8 @@ const DashboardPage = () => {
 
       {/* Employee Management Section */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-4">Employee Management</h2>
-        {/* New Employee Form */}
-        <form onSubmit={handleSubmit} className="mb-4 flex items-center">
-          <input
-            type="text"
-            name="name"
-            value={newEmployee.name}
-            onChange={handleChange}
-            placeholder="Employee Name"
-            className="mr-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 flex-grow"
-          />
-          <input
-            type="text"
-            name="position"
-            value={newEmployee.position}
-            onChange={handleChange}
-            placeholder="Position"
-            className="mr-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 flex-grow"
-          />
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg focus:outline-none transition duration-300"
-          >
-            Add Employee
-          </button>
-        </form>
-        {/* Employee List */}
+        <h2 className="text-xl font-semibold mb-4 underline">Employee Management</h2>
+
         <ul>
           {employees.map(employee => (
             <Transition
@@ -79,7 +110,8 @@ const DashboardPage = () => {
             >
               <li className="flex items-center justify-between border-b py-2">
                 <div>
-                  <p className="font-semibold">{employee.name}</p>
+                  {employee}
+                  <p className="font-semibold">{employee.employeeDetailsHash}</p>
                   <p className="text-sm text-gray-600">{employee.position}</p>
                 </div>
                 <button

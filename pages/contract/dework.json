@@ -1,6 +1,45 @@
 {
-    "deworkContract": "0x0471369943B50162Ed507A074faC0c2B8A8fEd8b",
-    "deworkContractABI" : [
+    "deworkContract": "0x5FdCE7b1Db0175b0463dd7D1aAd8620094c04cb1",
+    "deworkContractABI" :[
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "employee",
+                    "type": "address"
+                },
+                {
+                    "internalType": "string",
+                    "name": "employeeHash",
+                    "type": "string"
+                }
+            ],
+            "name": "addEmployee",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "checkIn",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "checkOut",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "mintIncentiveToken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
         {
             "inputs": [
                 {
@@ -51,6 +90,19 @@
             "type": "event"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "employee",
+                    "type": "address"
+                }
+            ],
+            "name": "removeEmployee",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "anonymous": false,
             "inputs": [
                 {
@@ -71,37 +123,6 @@
         },
         {
             "inputs": [],
-            "name": "CHECK_IN_TIME",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "employee",
-                    "type": "address"
-                },
-                {
-                    "internalType": "bytes32",
-                    "name": "employeeHash",
-                    "type": "bytes32"
-                }
-            ],
-            "name": "addEmployee",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
             "name": "admin",
             "outputs": [
                 {
@@ -115,16 +136,28 @@
         },
         {
             "inputs": [],
-            "name": "checkIn",
-            "outputs": [],
-            "stateMutability": "nonpayable",
+            "name": "CHECK_IN_TIME",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
             "inputs": [],
-            "name": "checkOut",
-            "outputs": [],
-            "stateMutability": "nonpayable",
+            "name": "getAllEmployeeDetails",
+            "outputs": [
+                {
+                    "internalType": "address[]",
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
@@ -176,9 +209,9 @@
                             "type": "bool"
                         },
                         {
-                            "internalType": "bytes32",
+                            "internalType": "string",
                             "name": "employeeDetailsHash",
-                            "type": "bytes32"
+                            "type": "string"
                         },
                         {
                             "internalType": "uint256",
@@ -197,26 +230,6 @@
                 }
             ],
             "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "mintIncentiveToken",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "employee",
-                    "type": "address"
-                }
-            ],
-            "name": "removeEmployee",
-            "outputs": [],
-            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]

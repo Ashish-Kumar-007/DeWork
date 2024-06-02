@@ -1,9 +1,103 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DeWork
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project aims to create a decentralized version of an HR and payroll management system similar to Keka, incorporating token incentives for timely arrivals and extra work hours. The project leverages blockchain technology to ensure transparency, security, and immutability of records, rewarding employees through utility tokens.
 
+## Key Features
+
+1. **Decentralized HR Processes**: 
+   - Attendance tracking
+   - Payroll management
+   - Performance evaluations
+
+2. **Token Incentives**:
+   - Utility tokens for timely attendance and extra work hours.
+   - Tokens can be used within the ecosystem or converted to other cryptocurrencies.
+
+3. **User Authentication**:
+   - Decentralized identity solutions to manage user identities securely.
+
+4. **Frontend Integration**:
+   - User-friendly frontend with Web3 integration for interaction with the blockchain.
+
+## Technologies Used
+
+- **Blockchain Platform**: Ethereum
+- **Smart Contract Language**: Solidity
+- **Web3 Libraries**: ethers.js, web3.js
+- **Decentralized Storage**: IPFS
+- **Frontend Frameworks**: Next.js
+
+## Project Status
+
+**Note**: The project is currently a work-in-progress. Only the employee addition part has been completed. The deployed contract for adding employees is available, but other functionalities like attendance tracking, payroll processing, and token distribution are yet to be implemented.
+
+## How to Use
+
+##To run Contract
+
+Go to contract folder and follow th below instruction
+
+### Prerequisites
+
+- Node.js
+- Hardhat
+- MetaMask or any Web3-enabled browser
+
+### Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Ashish-Kumar-007/DeWork.git
+    cd DeWork/contracts
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Deploy the smart contracts:
+    ```bash
+    npx hardhat run scripts/deploy.js --network your-network
+    ```
+
+4. Start the frontend:
+    ```bash
+    npm start
+    ```
+
+### Deployed Contract
+
+The deployed smart contract for adding employees is available on the selected blockchain. The contract address is:
+
+```plaintext
+DeWork Contract (Sepolia): 0x5FdCE7b1Db0175b0463dd7D1aAd8620094c04cb1
+Incentive Token Contract (Sepolia): 0x2e76FffC2EC9113728E857406170a90A47B72bcb
+```
+
+##To run Frontend page
+
+follow th below instruction
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Ashish-Kumar-007/DeWork.git
+    cd DeWork
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+
+3. Create env.local file and pass the desired values
+```
+NEXT_PUBLIC_PROJECT_ID
+NEXT_PUBLIC_PINATA_JWT
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
@@ -14,27 +108,17 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Adding an Employee
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. Open the frontend application.
+2. Navigate to the "Add Employee" section.
+3. Enter the required employee details.
+4. Submit the form to add the employee to the blockchain.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Contributions are welcome! Please fork the repository and submit a pull request for review.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License.

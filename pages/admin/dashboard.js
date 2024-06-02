@@ -1,14 +1,12 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import logo from "../public/dework.png";
-import Employee from "./components/employee";
-import { useAccount } from "wagmi";
 import Link from "next/link";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import React, { useState } from "react";
+import logo from "../../public/dework.png";
 import { useRouter } from "next/router";
+import { useAccount } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Web3 } from "web3";
 import {deworkContractABI, deworkContract} from "./contract/dework.json"
-import DashboardPage from "./components/admindashboard";
 
 const Dashboard = () => {
   const router = useRouter()
@@ -16,8 +14,8 @@ const Dashboard = () => {
   const [admin, setAdmin] = useState();
   const [web3, setWeb3] = useState(null);
   useEffect(() => {
-    if (window && window.ethereum) {
-      setWeb3(new Web3(window.ethereum));
+    if (window && window?.ethereum) {
+      setWeb3(new Web3(window?.ethereum));
     }
   }, []);
   const checkAddress = async () => {
@@ -33,10 +31,7 @@ const Dashboard = () => {
       console.error(error)
     }
   }
-  const redirectToAttendance = () => {
-    router.push("/employee/attendance")
-  }
-  useEffect(() => {
+    useEffect(() => {
     if(!isConnected){
       router.push("/")
     }
@@ -46,7 +41,8 @@ const Dashboard = () => {
     call()
   })
   return (
-    <div className="min-h-screen bg-gray-100">
+    <>
+      {" "}
       <header className="bg-blue-600 text-white p-4 shadow-md">
         <nav className="flex justify-between items-center container mx-auto">
           <Image src={logo} height={100} width={120} alt="DeWork logo" />
@@ -62,7 +58,7 @@ const Dashboard = () => {
                   Attendance
                 </Link>
               ) : (
-                <Link href="/admin/addemployee" className="hover:underline">
+                <Link href="" className="hover:underline">
                   Add Employees
                 </Link>
               )}
@@ -71,9 +67,7 @@ const Dashboard = () => {
           </ul>
         </nav>
       </header>
-      {admin ? <DashboardPage /> : <Employee />}
-      
-    </div>
+    </>
   );
 };
 
