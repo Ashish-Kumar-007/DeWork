@@ -4,12 +4,13 @@
 
 This project aims to create a decentralized version of an HR and payroll management system similar to Keka, incorporating token incentives for timely arrivals and extra work hours. The project leverages blockchain technology to ensure transparency, security, and immutability of records, rewarding employees through utility tokens.
 
+## Working
+Admin add the details of the employee and it will be stored on the Pinata IPFS and the generated hash will be stored in the contract. Once registered the employee can access the page which is not completed fully and check in and check out. For daily check in and out employee will get some 1 incentive token per hour which can be used in the office cafe, shop and to improve employees puntuality I have also implemented extra reward token, for example if an employee checked in on time he will get extra 10 incentive tokens 
+
 ## Key Features
 
 1. **Decentralized HR Processes**: 
    - Attendance tracking
-   - Payroll management
-   - Performance evaluations
 
 2. **Token Incentives**:
    - Utility tokens for timely attendance and extra work hours.
