@@ -1,25 +1,21 @@
-import Card from "./cards";
-import Dashboard from "./dashboard";
-import LoginForm from "./login";
-import AttendancePage from "./AttendancePage";
-import LoginPage from "./adminlogin";
-import DashboardPage from "./admindashboard";
-
+import { Web3 } from "web3";
+import { useEffect, useState } from "react";
+import LoginPage from "./loginpage";
 
 export default function Home() {
+  const [web3, setWeb3] = useState(null);
+  useEffect(() => {
+    if (window && window.ethereum) {
+      setWeb3(new Web3(window.ethereum));
+    }
+  }, []);
   return (
     <div>
-    <div>
-      <title>DWork</title>
-      <link rel="icon" href="/favicon.ico" />
-    </div>  
-    {/* <LoginForm />
-    <Card /> */}
-    {/* <Dashboard /> */}
-    {/* <AttendancePage /> */}
-    <LoginPage />
-    <DashboardPage />
-    
-  </div>
+      <div>
+        <title>DeWork</title>
+        <link rel="icon" href="/favicon.ico" />
+      </div>
+      <LoginPage />
+    </div>
   );
 }

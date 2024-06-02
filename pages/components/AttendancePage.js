@@ -1,6 +1,14 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
+import logo from "../../public/dework.png";
+import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const AttendancePage = () => {
+  const router = useRouter()
+  const { isConnected, address } = useAccount();
   // Dummy data for attendance records
   const [attendanceRecords, setAttendanceRecords] = useState([
     { date: '2024-06-01', checkIn: '09:00', checkOut: '18:00', tokensEarned: 5 },
@@ -61,6 +69,30 @@ const AttendancePage = () => {
   };
 
   return (
+    <>      <header className="bg-blue-600 text-white p-4 shadow-md">
+    <nav className="flex justify-between items-center container mx-auto">
+      <Image src={logo} height={100} width={120} alt="DeWork logo" />
+      <ul className="flex space-x-4 items-center">
+        <li>
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>
+        </li>
+        <li>
+          {address == address ? (
+            <Link href="/employee/attendance" className="hover:underline">
+              Attendance
+            </Link>
+          ) : (
+            <Link href="" className="hover:underline">
+              Add Employees
+            </Link>
+          )}
+        </li>
+        <li>{isConnected ? <ConnectButton label="log out" /> : null}</li>
+      </ul>
+    </nav>
+  </header>
     <div className="container mx-auto mt-8">
       <h1 className="text-3xl font-semibold mb-4">Attendance Page</h1>
       {/* Check-In/Check-Out Button */}
@@ -73,7 +105,7 @@ const AttendancePage = () => {
       {/* Success message */}
       {showSuccessMessage && (
         <div className="mt-4 bg-green-200 text-green-800 py-2 px-4 rounded-md">
-          {isCheckedIn ? 'Checked out successfully!' : 'Checked in successfully!'}
+          {isCheckedIn ? 'Checked in successfully!' : 'Checked out successfully!'}
         </div>
       )}
       {/* Attendance History */}
@@ -90,7 +122,8 @@ const AttendancePage = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </div></>
+    
   );
 };
 
